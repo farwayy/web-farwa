@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+    integrity="sha384-dpuaG1suU0eT09tx5plTaGMLBsfDLzUCCUXOY2j/LSvXYuG6Bqs43ALlhIqAJVRb" crossorigin="anonymous">
+
+  <title>stylo.pk</title>
+  <style>
+    /* Custom CSS for hover dropdown */
+    .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    /* Underline on hover for main navbar items */
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Underline on hover for dropdown menu items */
+    .dropdown-item:hover {
+      text-decoration: underline;
+    }
+
+    .product-title {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .product-price {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .quick-view-btn {
+      background-color: #ff0080;
+      color: white;
+    }
+
+    .quick-view-btn:hover {
+      background-color: #e60074;
+    }
+
+    .product-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .product-image-default {
+      width: 100%;
+      transition: opacity 0.5s ease;
+    }
+
+    .product-image-hover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .product-container:hover .product-image-hover {
+      opacity: 1;
+    }
+
+    .product-container:hover .product-image-default {
+      opacity: 0;
+    }
+
+    .quick-view-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      background-color: #ff007a;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .product-container:hover .quick-view-btn {
+      display: block;
+    }
+    .img-fluid{
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      /* Circular shape */
+      border: 2px solid #000;
+      /* Border color */
+      object-fit: cover;
+      margin-top: 30px;
+    }
+
+    .product-container {
+      text-align: center;
+      /* Center product titles and prices */
+    }
+
+    .pret-title{
+      max-width: 100%;
+      position: relative;
+      margin-left: 0%;
+      margin-top: 20px;
+      margin-right: 0%;
+    }
+
+    .circle-img {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      /* Circular shape */
+      border: 2px solid #000;
+      /* Border color */
+      object-fit: cover;
+      margin-top: 30px;
+    }
+
+    /* Optional: Space for the image row */
+    .img-row {
+      padding: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 11">
+    <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="stylo.jpeg" class="rounded me-2" alt="Logo" style="width: 50px;">
+        <strong class="me-auto"></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Never miss a beat! Get instant notifications and stay up-to-date with the latest offers and updates.
+      </div>
+      <!-- Left-aligned buttons -->
+      <div class="d-flex justify-content-start mt-2 pt-2 border-top">
+        <button type="button" class="btn btn-primary btn-sm me-2">Allow</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">No, Thanks</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- navbar-->
+  <nav class="navbar navbar-expand-lg bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="stylo.jpeg" alt="Logo" style="width: 130px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              NEW IN
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              WOMEN SHOES
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              WOMEN APPAREL
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              BAGS
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              KIDS
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown"></li>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ACCESSORIES
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              FRAGRANCES
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown"></li>
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            SALE
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="text-light text-center py-2" style="background-color: #000000;">
+    Use code 'freedelivery' at checkout to get free delivery on prepaid orders.
+  </div>
+
+  <!-- Carousel -->
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+    <div id="carouselExampleIndicators" class="carousel slide">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="s5.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="s6.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="s7.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="container text-center mt-5">
+      <h2>LEADING CHOICES</h2>
+      <a href="#" class="btn btn-outline-dark mb-4">View All</a>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Product 1 -->
+        <div class="col-md-4">
+          <div class="product-container">
+            <!-- Default Image -->
+            <img src="s12.jpg" alt="Default Image" class="product-image-default">
+            <!-- Hover Image -->
+            <img src="s11.jpg" alt="Hover Image" class="product-image-hover">
+            <!-- Quick View Button -->
+            <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal1">Quick View</button>
+          </div>
+          <h5 class="text-center mt-3 product-title">Silver Fancy Sandal</h5>
+          <p class="text-center">Rs. 4,800</p>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="col-md-4">
+          <div class="product-container">
+            <img src="s14.jpg" alt="Default Image" class="product-image-default">
+            <img src="s13.jpg" alt="Hover Image" class="product-image-hover">
+            <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal2">Quick View</button>
+          </div>
+          <h5 class="text-center mt-3 product-title">Green Formal Slippers</h5>
+          <p class="text-center">Rs. 3,800</p>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="col-md-4">
+          <div class="product-container">
+            <img src="s9.jpg" alt="Default Image" class="product-image-default">
+            <img src="s10.jpg" alt="Hover Image" class="product-image-hover">
+            <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal3">Quick View</button>
+          </div>
+          <h5 class="text-center mt-3 product-title">Girls Grey Pumpy</h5>
+          <p class="text-center">Rs. 3,200</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="Image">
+      <img src="s15.jpg" class="d-block w-100" alt="...">
+    </div>
+
+    <div class="container my-4">
+      <div class="d-flex justify-content-center flex-wrap">
+        <!-- Product 1 -->
+        <div class="p-2 text-center">
+          <img src="s16.jpg" class="img-fluid" alt="Golden Fancy Sandal">
+          <div class="product-title">SANDALS</div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="p-2 text-center">
+          <img src="s17.jpg" class="img-fluid" alt="Silver Fancy Sandal">
+          <div class="product-title">SLIPPERS</div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="p-2 text-center">
+          <img src="s18.jpg" class="img-fluid" alt="Black Fancy Slipper">
+          <div class="product-title">SOFTYS</div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="p-2 text-center">
+          <img src="s19.jpg" class="img-fluid" alt="Silver Fancy Sandal">
+          <div class="product-title">CHAPPALS</div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="p-2 text-center">
+          <img src="s20.jpg" class="img-fluid" alt="Black Fancy Slipper">
+          <div class="product-title">SNEAKERS</div>
+        </div>
+      </div>
+
+      <div class="container text-center mt-5">
+        <h2>Trendy Shoes for Fashionistas</h2>
+        <a href="#" class="btn btn-outline-dark mb-4">View All</a>
+      </div>
+
+      <div class="container mt-5">
+        <div class="row">
+          <!-- Product 1 -->
+          <div class="col-md-4">
+            <div class="product-container">
+              <!-- Default Image -->
+              <img src="s21.jpg" alt="Default Image" class="product-image-default">
+              <!-- Hover Image -->
+              <img src="s22.jpeg" alt="Hover Image" class="product-image-hover">
+              <!-- Quick View Button -->
+              <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal1">Quick View</button>
+            </div>
+            <h5 class="text-center mt-3 product-title">Silver Fancy Sandal</h5>
+            <p class="text-center">Rs. 4,800</p>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="col-md-4">
+            <div class="product-container">
+              <img src="s23.jpeg" alt="Default Image" class="product-image-default">
+              <img src="s24.jpeg" alt="Hover Image" class="product-image-hover">
+              <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal2">Quick View</button>
+            </div>
+            <h5 class="text-center mt-3 product-title">Green Formal Slippers</h5>
+            <p class="text-center">Rs. 3,800</p>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="col-md-4">
+            <div class="product-container">
+              <img src="s25.jpeg" alt="Default Image" class="product-image-default">
+              <img src="s26.jpeg" alt="Hover Image" class="product-image-hover">
+              <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal3">Quick View</button>
+            </div>
+            <h5 class="text-center mt-3 product-title">Girls Grey Pumpy</h5>
+            <p class="text-center">Rs. 3,200</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pret-section">
+        <img src="s27.jpg" alt="pret" class="pret-title">
+      </div>
+
+      <div class="container">
+        <div class="row img-row justify-content-center">
+          <div class="col-auto">
+            <img src="s28.jpg" class="circle-img" alt="PRET 1PC">
+            <div class="text-center">PRET 1PC</div>
+          </div>
+          <div class="col-auto">
+            <img src="s29.jpg" class="circle-img" alt="PRET 2PC">
+            <div class="text-center">PRET 2PC</div>
+          </div>
+          <div class="col-auto">
+            <img src="s30.jpg" class="circle-img" alt="PRET 3PC">
+            <div class="text-center">PRET 3PC</div>
+          </div>
+          <div class="col-auto">
+            <img src="s31.jpg" class="circle-img" alt="UNSTITCHED 1PC">
+            <div class="text-center">UNSTITCHED 1PC</div>
+          </div>
+          <div class="col-auto">
+            <img src="s32.jpg" class="circle-img" alt="UNSTITCHED 2PC">
+            <div class="text-center">UNSTITCHED 2PC</div>
+          </div>
+        </div>
+      </div>
+      <div class="container text-center mt-5">
+        <h2>Trendy Shoes for Fashionistas</h2>
+        <a href="#" class="btn btn-outline-dark mb-4">View All</a>
+      </div>
+
+      <div class="container mt-5">
+        <div class="row">
+          <!-- Product 1 -->
+          <div class="col-md-4">
+            <div class="product-container">
+              <!-- Default Image -->
+              <img src="s21.jpg" alt="Default Image" class="product-image-default">
+              <!-- Hover Image -->
+              <img src="s22.jpeg" alt="Hover Image" class="product-image-hover">
+              <!-- Quick View Button -->
+              <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal1">Quick View</button>
+            </div>
+            <h5 class="text-center mt-3 product-title">Silver Fancy Sandal</h5>
+            <p class="text-center">Rs. 4,800</p>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="col-md-4">
+            <div class="product-container">
+              <img src="s23.jpeg" alt="Default Image" class="product-image-default">
+              <img src="s24.jpeg" alt="Hover Image" class="product-image-hover">
+              <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal2">Quick View</button>
+            </div>
+            <h5 class="text-center mt-3 product-title">Green Formal Slippers</h5>
+            <p class="text-center">Rs. 3,800</p>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="col-md-4">
+            <div class="product-container">
+              <img src="s25.jpeg" alt="Default Image" class="product-image-default">
+              <img src="s26.jpeg" alt="Hover Image" class="product-image-hover">
+              <button class="quick-view-btn" data-toggle="modal" data-target="#quickViewModal3">Quick View</button>
+            </div>
+            <h5 class="text-center mt-3 product-title">Girls Grey Pumpy</h5>
+            <p class="text-center">Rs. 3,200</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Optional JavaScript; choose one of the two! -->
+
+      <!-- Option 1: Bootstrap Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+      <script>
+        // Automatically show the toast notification on page load
+        window.onload = function () {
+          var toastEl = document.getElementById('notificationToast');
+          var toast = new bootstrap.Toast(toastEl);
+          toast.show();
+        };
+      </script>
+      <!-- Option 2: Separate Popper and Bootstrap JS -->
+      <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
